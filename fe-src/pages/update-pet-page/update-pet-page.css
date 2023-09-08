@@ -1,0 +1,31 @@
+#updatePetForm__submit-button {
+  margin-top: 50px !important;
+}
+
+#updatePetForm__found-button,
+#updatePetForm__delete-button,
+#updatePetForm__submit-button {
+  margin: 0 auto;
+  display: block;
+  margin-top: 25px;
+}
+
+#updatePetForm__delete-button {
+  background-color: #eb6372;
+}
+
+#updatePetForm {
+  margin-top: 0;
+}
+
+#updatePetForm .label {
+  margin-top: 40px;
+}
+
+#updatePetForm .profile-picture-container {
+  margin-bottom: 15px;
+}
+
+#petDescription {
+  resize: none;
+}

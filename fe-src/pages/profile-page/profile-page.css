@@ -1,0 +1,16 @@
+#editProfileForm > .label {
+  margin-top: 25px;
+}
+
+.editProfileForm__profile-picture-container {
+  margin-bottom: 35px;
+}
+
+#buttonSaveProfile,
+#buttonEditProfile {
+  margin-top: 35px;
+}
+
+#buttonSaveProfile {
+  display: none;
+}

@@ -1,0 +1,40 @@
+{
+  "name": "desafio-modulo-7",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev:be": "ts-node ./be-dist/index.js",
+    "dev:fe": "parcel serve ./fe-src/index.html",
+    "dev": "npx concurrently 'yarn dev:fe' 'yarn dev:be'",
+    "sync": "ts-node ./be-src/sync.ts",
+    "build:be": "tsc",
+    "build:fe": "parcel build ./fe-src/index.html",
+    "build": "npm run build:be && npm run build:fe",
+    "start": "node ./be-dist/index.js"
+  },
+  "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
+    "@mapbox/search-js-web": "^1.0.0-beta.17",
+    "@vaadin/router": "^1.7.5",
+    "algoliasearch": "^4.19.1",
+    "cloudinary": "^1.39.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "dropzone": "^6.0.0-beta.2",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "mapbox-gl": "^2.15.0",
+    "parcel": "^2.9.3",
+    "pg": "^8.11.1",
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "buffer": "^5.5.0||^6.0.0",
+    "crypto-browserify": "^3.12.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0"
+  }
+}

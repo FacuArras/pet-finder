@@ -1,0 +1,25 @@
+.card__info__edit-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #5a8fec;
+  color: white;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.main__image--published-pets {
+  width: 70%;
+  max-width: 280px;
+  margin: 35px auto 0;
+}
+
+.main__button--published-pets {
+  margin-top: 95px;
+}
+
+.card__info__edit-link {
+  text-decoration: none;
+}

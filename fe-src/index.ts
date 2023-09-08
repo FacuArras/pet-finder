@@ -1,0 +1,10 @@
+import "./router";
+import "./components/header-component";
+import "./pages/home-page/home-page";
+import "./pages/auth-page/auth-page";
+import "./pages/register-page/register-page";
+import "./pages/profile-page/profile-page";
+import "./pages/lost-pets-page/lost-pets-page";
+import "./pages/publish-pet-page/publish-pet-page";
+import "./pages/pusblished-pets-page/published-pets-page";
+import "./pages/update-pet-page/update-pet-page";

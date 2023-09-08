@@ -1,0 +1,20 @@
+.main__image {
+  margin-top: 25px;
+}
+
+.main__home-title {
+  font-weight: 700;
+  color: #eb6372;
+  margin: 25px 0;
+}
+
+.main__home-subtitle {
+  margin: 0 5% 30px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.main__location-button {
+  margin-bottom: 25px;
+}

@@ -1,0 +1,52 @@
+.registerForm {
+  margin: 0;
+}
+
+.main--register .title {
+  margin-bottom: 15px;
+}
+
+.main--register .subtitle {
+  margin-bottom: 25px;
+}
+
+.registerForm .label {
+  margin-top: 25px;
+}
+
+.registerForm .profile-picture-container {
+  margin-bottom: 15px;
+}
+
+.profile-picture-container {
+  width: 250px;
+  margin: 0 auto;
+  height: 251px;
+  display: flex;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(128, 128, 128, 0.171);
+}
+
+.dz-image-preview {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.dz-details,
+.dz-progress,
+.dz-success-mark,
+.dz-error-mark {
+  display: none;
+}
+
+.dz-error-message {
+  color: red;
+}

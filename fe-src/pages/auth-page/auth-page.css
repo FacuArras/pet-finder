@@ -1,0 +1,43 @@
+.main__image--auth {
+  margin: 25px 10px 0 0;
+  width: 90%;
+}
+
+.main__title--auth {
+  margin: 25px 0 15px;
+}
+
+.form {
+  margin: 35px 0 0;
+  width: 80%;
+  max-width: 285px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+.registerQuestion {
+  margin: 15px 0 0;
+  font-weight: 500;
+  font-size: 16px;
+  display: inline;
+}
+
+.registerQuestion__link {
+  color: #5a8fec;
+  display: inline;
+  text-decoration: underline;
+}
+
+.button--auth {
+  margin-top: 25px;
+}
