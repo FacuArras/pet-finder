@@ -17,10 +17,7 @@ app.use(express.json({
     limit: "50mb"
 }));
 
-app.use(cors({
-    origin: "http://localhost:3000",
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-}));
+app.use(cors());
 
 app.use(express.static(pathStaticDir));
 

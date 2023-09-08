@@ -4,7 +4,6 @@ const authImage = require("url:../../img/auth-image.png");
 class AuthPage extends HTMLElement {
     connectedCallback() {
         this.render();
-        console.log(process.env.SECRET_KEY);
     };
 
     addListeners() {
