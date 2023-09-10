@@ -4,8 +4,6 @@ import { cloudinary } from "../lib/cloudinary";
 import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 
-export const SECRET = "9Ej7FtKwYRiL3QhS6bPx";
-
 function getSHA256ofString(text: string) {
     return crypto.createHash("sha256").update(text).digest("hex");
 };
@@ -68,7 +66,7 @@ export async function signIn(email: string, password: string) {
         });
 
         if (auth) {
-            const token = jwt.sign({ id: auth.get("user_id") }, SECRET);
+            const token = jwt.sign({ id: auth.get("user_id") }, process.env.SECRET);
             return token;
         } else {
             throw "El usuario no ha sido encontrado.";

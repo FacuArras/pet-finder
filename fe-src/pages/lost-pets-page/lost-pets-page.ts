@@ -79,35 +79,33 @@ class LostPetsPage extends HTMLElement {
         let reportPetId = 0;
 
         /* Escucho cuando se le haga click al button de "reportar" y le agrego la información correspondiente. */
-        cardsContainerEl.addEventListener("click", e => {
+        cardsContainerEl.addEventListener("click", async e => {
             if (e.target.classList.value === "card__info__report-button") {
-                const petId = e.target.id.split(" ")[1];
-                reportPetId = petId;
-                const cards = cardsContainerEl.querySelectorAll(".card");
-
-                for (const c of cards) {
-                    if (petId == c.id) {
-                        reportEl.querySelector(".report__title").textContent = "Reportar info de " + c.querySelector(".card__info__name").textContent;
-                    };
-                };
-
                 reportEl!.style.display = "flex";
+                const petId = e.target.id.split(" ")[1];
+                const cards = cardsContainerEl.querySelectorAll(".card");
+                reportPetId = petId;
+
+                const pet = await state.getOnePet(petId);
+
+                reportEl.querySelector(".report__title").textContent = "Reportar info de " + pet.full_name;
+
+                reportFormEl.addEventListener("submit", e => {
+                    e.preventDefault();
+
+                    const target = e.target as any;
+                    const fullName = target.fullname.value;
+                    const phoneNumber = target.phoneNumber.value;
+                    const lastSeen = target.lastSeen.value;
+
+
+                    state.createReport(reportPetId, fullName, lastSeen, pet.user.email, pet.full_name, phoneNumber);
+                });
             };
         });
 
         reportCloseMenuEl.addEventListener("click", e => {
             reportEl!.style.display = "none";
-        });
-
-        reportFormEl.addEventListener("submit", e => {
-            e.preventDefault();
-
-            const target = e.target as any;
-            const fullName = target.fullname.value;
-            const phoneNumber = target.phoneNumber.value;
-            const lastSeen = target.lastSeen.value;
-
-            state.createReport(reportPetId, fullName, lastSeen, phoneNumber);
         });
     };
 

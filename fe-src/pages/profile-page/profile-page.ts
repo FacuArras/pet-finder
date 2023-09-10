@@ -3,7 +3,6 @@ import Dropzone from "dropzone";
 import { Router } from "@vaadin/router";
 
 class ProfilePage extends HTMLElement {
-
     async connectedCallback() {
         /* Obtengo el objeto de localStorage. */
         const petFinderLocalStorage = localStorage.getItem("pet-finder");
@@ -102,6 +101,8 @@ class ProfilePage extends HTMLElement {
                     target.phoneNumber.value,
                     pictureFile.dataURL
                 );
+
+                Router.go("/profile");
             };
         });
 

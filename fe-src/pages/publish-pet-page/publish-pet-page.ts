@@ -100,6 +100,7 @@ class PublishPetPage extends HTMLElement {
             const petDescription = target.petDescription.value;
 
             state.createPet(JSON.parse(petFinderLocalStorage!).token, petName, petPicture, lostPet.placeLat, lostPet.placeLng, petDescription, "lost", lostPet.placeName);
+            Router.go("/published-pets");
         });
     };
 

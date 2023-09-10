@@ -1,5 +1,5 @@
-import { Router } from "@vaadin/router";
 import { state } from "../../state";
+import { Router } from "@vaadin/router";
 import Dropzone from "dropzone";
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { mapboxgl } from "../../../be-dist/lib/mapbox";
@@ -118,18 +118,21 @@ class UpdatePetPage extends HTMLElement {
             };
 
             state.modifyOnePet(JSON.parse(petFinderLocalStorage!).token, parseInt(window.location.href.split("?")[1].split("=")[1]), petName, lostPet.placeLat, lostPet.placeLng, petDescription, "lost", lostPet.placeName, petPicture);
+            Router.go("/published-pets");
         });
 
         /* Escucho el botón de encotrado para cambiar el estado de la mascota a "found". */
         foundButtonEl!.addEventListener("click", e => {
             const petFinderLocalStorage = localStorage.getItem("pet-finder");
             state.petFound(JSON.parse(petFinderLocalStorage!).token, parseInt(window.location.href.split("?")[1].split("=")[1]));
+            Router.go("/published-pets");
         });
 
         /* Escucho el botón de borrado para borrar a la mascota de las bases de datos. */
         deleteButtonEl!.addEventListener("click", e => {
             const petFinderLocalStorage = localStorage.getItem("pet-finder");
             state.deleteOnePet(JSON.parse(petFinderLocalStorage!).token, parseInt(window.location.href.split("?")[1].split("=")[1]));
+            Router.go("/published-pets");
         });
     };
 

@@ -4,7 +4,7 @@ import * as express from "express";
 import * as jwt from "jsonwebtoken";
 import * as process from "process";
 import * as cors from "cors";
-import { createUser, getAllUsers, getOneUser, modifyOneUser, deleteOneUser, signIn, SECRET } from "./controllers/user-controllers"
+import { createUser, getAllUsers, getOneUser, modifyOneUser, deleteOneUser, signIn } from "./controllers/user-controllers"
 import { createPet, getAllPetsFromUser, getAllPets, getOnePet, modifyOnePet, deleteOnePet, getPetsNearby } from "./controllers/pet-controllers";
 import { createReport, getAllReportsFromPet } from "./controllers/report-controllers";
 
@@ -69,7 +69,7 @@ function authMiddleware(req, res, next) {
     try {
         const token = req.headers.authorization.split(" ")[1];
 
-        const data = jwt.verify(token, SECRET);
+        const data = jwt.verify(token, process.env.SECRET);
         req._user = data;
         next();
     } catch (error) {
@@ -238,13 +238,13 @@ app.delete("/pets/:petId", authMiddleware, async (req, res) => {
     };
 });
 
-/* Crear reporte */
+/* Crear reporte. */
 app.post("/reports/:petId", async (req, res) => {
     try {
         const { petId } = req.params;
-        const { userFullName, message, userPhoneNumber } = req.body;
+        const { userFullName, message, userPhoneNumber, userEmail, petName } = req.body;
 
-        const report = await createReport(petId, userFullName, message, userPhoneNumber);
+        const report = await createReport(petId, userFullName, message, userPhoneNumber, userEmail, petName);
         res.status(201).json(report);
 
     } catch (error) {
@@ -253,6 +253,7 @@ app.post("/reports/:petId", async (req, res) => {
     };
 });
 
+/* Obtener los reportes asociados a una mascota. */
 app.get("/reports/:petId", async (req, res) => {
     try {
         const { petId } = req.params;

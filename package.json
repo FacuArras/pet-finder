@@ -26,6 +26,7 @@
     "mapbox-gl": "^2.15.0",
     "parcel": "^2.9.3",
     "pg": "^8.11.1",
+    "resend": "^1.0.0",
     "sequelize": "^6.32.1",
     "sqlite3": "^5.1.6",
     "typescript": "^5.2.2"

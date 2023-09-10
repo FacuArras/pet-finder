@@ -2,7 +2,7 @@ import { Pet, User } from "../models/models";
 import { cloudinary } from "../lib/cloudinary";
 import { index } from "../lib/algolia";
 
-/* Crear una mascota asociada a un usuario. */
+/* Crea una mascota asociada a un usuario, subiendo toda su información tanto a Algolia como a Postgre, además de subir su foto a cloudinary.*/
 export async function createPet(petFullName: string, petPicture: string, petLastLocationLat: number, petLastLocationLng: number, petDescription: string, petState: string, lastSeen: string, ownerId: number) {
     let pet = {
         full_name: petFullName,
@@ -42,7 +42,7 @@ export async function createPet(petFullName: string, petPicture: string, petLast
     return newPet;
 };
 
-/* Retorna todas las mascotas de un usuario. */
+/* Retorna todas las mascotas asociadas a un usuario. */
 export async function getAllPetsFromUser(ownerId: number) {
     const pets = await Pet.findAll({
         where: { userId: ownerId },
@@ -64,7 +64,8 @@ export async function getOnePet(petId: number) {
     const pet = await Pet.findOne({
         where: {
             id: petId
-        }
+        },
+        include: [User]
     });
 
     if (pet) {
@@ -88,6 +89,7 @@ export async function getPetsNearby(petLastLocationLat: number, petLastLocationL
     };
 };
 
+/* Función que hace que sea posible el modificar los datos de una mascota en Algolia. */
 function bodyToIndex(body, id) {
     const respuesta: any = {};
 
@@ -113,7 +115,7 @@ function bodyToIndex(body, id) {
     return respuesta;
 };
 
-/*  Busca la mascota por su ID y el ID del dueño, cuando la ecuentra la modifica tanto en la base de datos como en Algolia. */
+/*  Busca una mascota por su ID y el ID del dueño, cuando la ecuentra la modifica tanto en la base de datos como en Algolia. */
 export async function modifyOnePet(petId: number, ownerId: number, body) {
     const pet = await Pet.findOne({
         where: {
@@ -142,7 +144,7 @@ export async function modifyOnePet(petId: number, ownerId: number, body) {
     };
 };
 
-/* Borra una mascota según el id proporcionado. */
+/* Borra una mascota según el id proporcionado, verificando el que el id del dueño coincida. */
 export async function deleteOnePet(petId: number, ownerId: number) {
     const pet = await Pet.findOne({
         where: {

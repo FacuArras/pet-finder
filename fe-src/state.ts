@@ -40,7 +40,7 @@ const state = {
         }).then(res => {
             return res.json();
         }).then(data => {
-            console.log(data);
+            return data;
         });
     },
 
@@ -72,10 +72,6 @@ const state = {
                 "profile_picture_URL": userProfilePicture
             })
         });
-
-        const data = await response.json();
-
-        console.log(data);
     },
 
     async createPet(token, petFullName: string, petPicture: string, petLastLocationLat: number, petLastLocationLng: number, petDescription: string, petState: string, petLastSeen: string) {
@@ -98,7 +94,7 @@ const state = {
 
         const data = await response.json()
 
-        console.log(data);
+        return data;
     },
 
     async getAllPetsFromUser(token) {
@@ -112,7 +108,6 @@ const state = {
 
         const data = await response.json();
 
-        console.log(data);
         return data;
     },
 
@@ -126,7 +121,6 @@ const state = {
 
         const data = await response.json();
 
-        console.log(data);
         return data;
     },
 
@@ -140,7 +134,6 @@ const state = {
 
         const data = await response.json();
 
-        console.log(data);
         return data;
     },
 
@@ -164,7 +157,6 @@ const state = {
 
         const data = await response.json();
 
-        console.log(data);
         return data;
     },
 
@@ -182,7 +174,6 @@ const state = {
 
         const data = await response.json();
 
-        console.log(data);
         return data;
     },
 
@@ -197,11 +188,10 @@ const state = {
 
         const data = await response.json();
 
-        console.log(data);
         return data;
     },
 
-    async createReport(petId: number, userFullName: string, message: string, userPhoneNumber?: number) {
+    async createReport(petId: number, userFullName: string, message: string, userEmail: string, petName: string, userPhoneNumber?: number) {
         const response = await fetch(API_BASE_URL + "/reports/" + petId, {
             method: "post",
             headers: {
@@ -210,13 +200,14 @@ const state = {
             body: JSON.stringify({
                 userFullName,
                 message,
-                userPhoneNumber
+                userPhoneNumber,
+                userEmail,
+                petName
             })
         });
 
         const data = await response.json();
 
-        console.log(data);
         return data;
     },
 };

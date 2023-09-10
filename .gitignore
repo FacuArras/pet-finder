@@ -5,3 +5,4 @@ dist
 .env
 yarn.lock
 package-lock.json
+sync.ts

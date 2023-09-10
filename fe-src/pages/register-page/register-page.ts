@@ -23,6 +23,8 @@ class RegisterPage extends HTMLElement {
 
         myDropzone.on("thumbnail", function (file) {
             pictureFile = file;
+            console.log(pictureFile.dataURL);
+
         });
 
         /* Escucho el formulario. */

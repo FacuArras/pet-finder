@@ -1,13 +1,14 @@
 const petFinderLogo = require("url:../img/logo.svg");
 const menuIcon = require("url:../img/menu.svg");
 const closeMenuIcon = require("url:../img/closeMenu.svg");
+const state = require("../state");
 
 class HeaderComponent extends HTMLElement {
     constructor() {
         super();
         this.render();
     }
-    render() {
+    async render() {
         const shadow = this.attachShadow({ mode: "open" });
         const header = document.createElement("header");
 
@@ -39,8 +40,31 @@ class HeaderComponent extends HTMLElement {
                 </ul>
 
                 <p class="menuAccount">¿Todavía no iniciaste sesión? Hacelo <a href="/auth" class="menuAccount__link">acá</a></p>
+                <p class="menuAccount menuAccount--mail">dlkakldaskldnas@gmail.com</p>
+                <a class="logOut" href="/home">Cerrar sesión</a>
             </div>
         `;
+
+        /* Si se detecta un usuario guardado, se muestra su mail con la opción de cerrar sesión. */
+        if (localStorage.getItem("pet-finder")) {
+            const petFinderLocalStorage = localStorage.getItem("pet-finder");
+            const userEmailEl = header.querySelector(".menuAccount--mail") as any;
+            const userLogOutEl = header.querySelector(".logOut") as any;
+            const userMenuAccount = header.querySelector(".menuAccount") as any;
+            const user = await state.state.getUser(JSON.parse(petFinderLocalStorage!).token);
+
+            userMenuAccount.style.display = "none";
+            userEmailEl.style.display = "block";
+            userLogOutEl.style.display = "block";
+
+            userEmailEl.textContent = user.email;
+
+            userLogOutEl.addEventListener("click", e => {
+                localStorage.removeItem("pet-finder");
+                location.reload();
+            });
+        };
+
         const style = document.createElement("style");
 
         style.innerHTML = `  
@@ -133,6 +157,21 @@ class HeaderComponent extends HTMLElement {
 
             .menuAccount__link{
                 color: #5a8fec;
+                text-decoration: underline;
+            }
+
+            .menuAccount--mail{
+                display: none;
+                margin-top: 80px;
+                font-size: 18px;
+            }
+
+            .logOut{
+                display: none;
+                color: #3B97D3;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
                 text-decoration: underline;
             }
         `;
